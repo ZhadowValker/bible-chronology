@@ -50,15 +50,40 @@ function render(){
 
 function openSource(r){
  if(!r)return;
- const src=firstSource(r);
- if(!src)return;
- activeRecord=r;lastFocused=document.activeElement;
+ activeRecord=r;
+ lastFocused=document.activeElement;
  $("modalTitle").textContent=`${r.Reference} — ${r.Event}`;
- $("sourceLink").href=src;
- $("sourceEmpty").textContent=`${r.Reference} on sajeevavahini.com`;
+ 
+ // Build list of Bible sources for this reference
+ const ref = r.Reference.trim();
+ const book = ref.split(' ')[0];
+ const sourceList = [
+   { name: 'Telugu (BSI)', url: `https://www.sajeevavahini.com/bible/telugu-bible-bsi/${book.toLowerCase()}/` },
+   { name: 'KJV (BibleHub)', url: `https://biblehub.com/${book.lower()}/` },
+   { name: 'NIV (Bible.com)', url: `https://www.bible.com/search?q=${encodeURIComponent(ref)}` },
+   { name: 'ESV (BibleHub)', url: `https://biblehub.com/esv/${book.toLowerCase()}/` }
+ ];
+ 
+ const container = $("sourceEmpty");
+ container.innerHTML = '<div class="sources-list"><p style="margin-top:0; color:#666; font-size:0.9em;">Choose a Bible source:</p></div>';
+ const list = container.querySelector('.sources-list');
+ 
+ sourceList.forEach((src, i) => {
+   const btn = document.createElement('a');
+   btn.href = src.url;
+   btn.target = '_blank';
+   btn.rel = 'noopener';
+   btn.className = 'source-option';
+   btn.textContent = src.name;
+   btn.style.cssText = 'display:block; padding:12px 16px; margin:8px 0; background:#f0f0f0; border-radius:4px; color:#333; text-decoration:none; border:1px solid #ddd; transition:all 0.2s; cursor:pointer;';
+   btn.onmouseover = () => btn.style.background = '#e0e0e0';
+   btn.onmouseout = () => btn.style.background = '#f0f0f0';
+   list.appendChild(btn);
+ });
+ 
  $("overlay").style.display="flex";
  document.body.style.overflow="hidden";
- $("sourceLink").focus();
+ container.focus();
 }
 function closeSource(){ $("sourceFrame").src="";$("overlay").style.display="none";document.body.style.overflow="";if(lastFocused)lastFocused.focus();activeRecord=null }
 function setMode(next){mode=next;$("tileBtn").classList.toggle("active",mode==="tiles");$("listBtn").classList.toggle("active",mode==="list");$("tileBtn").setAttribute("aria-pressed",mode==="tiles");$("listBtn").setAttribute("aria-pressed",mode==="list");render()}
