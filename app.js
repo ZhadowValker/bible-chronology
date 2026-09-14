@@ -52,6 +52,16 @@ function openSource(r){
  if(!r)return;
  const src=firstSource(r);
  if(!src)return;
+ if(window.matchMedia("(max-width: 760px)").matches){
+  activeRecord=r;lastFocused=document.activeElement;
+  const list=sources(r);
+  $("modalTitle").textContent=`${r.Reference} — ${r.Event}`;
+  $("sourceFrame").src=src;$("sourceFrame").style.display="block";$("sourceEmpty").style.display="none";
+  $("sourceLink").href=src;$("sourceLink").style.display="inline";$("sourceTabs").innerHTML="";
+  list.forEach((url,i)=>{const b=document.createElement("button");b.type="button";b.className=`source-tab${i===0?" active":""}`;b.textContent=list.length>1?`Chapter ${i+1}`:"Open chapter";b.onclick=()=>{document.querySelectorAll(".source-tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");$("sourceFrame").src=url;$("sourceLink").href=url};$("sourceTabs").appendChild(b)});
+  $("overlay").style.display="flex";document.body.style.overflow="hidden";$("closeBtn").focus();
+  return;
+ }
  window.open(src,"sajeevavahiniSource","popup=yes,width=1100,height=800,noopener,noreferrer");
 }
 function closeSource(){ $("sourceFrame").src="";$("overlay").style.display="none";document.body.style.overflow="";if(lastFocused)lastFocused.focus();activeRecord=null }
