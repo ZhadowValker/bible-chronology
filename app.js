@@ -52,7 +52,13 @@ function openSource(r){
  if(!r)return;
  const src=firstSource(r);
  if(!src)return;
- activeRecord=r;lastFocused=document.activeElement;const list=sources(r);$("modalTitle").textContent=`${r.Reference} — ${r.Event}`;$("sourceFrame").src=src;$("sourceFrame").style.display="block";$("sourceEmpty").style.display="none";$("sourceFrame").onerror=()=>{$("sourceEmpty").style.display="block";$("sourceEmpty").innerHTML="Source not available in popup - Use 'Open in new tab'"};$("sourceFrame").onload=()=>{$("sourceEmpty").style.display="none"};$("sourceLink").href=src;$("sourceLink").style.display="inline";$("sourceTabs").innerHTML="";list.forEach((url,i)=>{const b=document.createElement("button");b.type="button";b.className=`source-tab${i===0?" active":""}`;b.textContent=list.length>1?`Chapter ${i+1}`:"Open chapter";b.onclick=()=>{document.querySelectorAll(".source-tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");$("sourceFrame").src=url;$("sourceFrame").onerror=()=>{$("sourceEmpty").style.display="block";$("sourceEmpty").innerHTML="Source not available in popup - Use 'Open in new tab'"};$("sourceFrame").onload=()=>{$("sourceEmpty").style.display="none"};$("sourceLink").href=url};$("sourceTabs").appendChild(b)});$("overlay").style.display="flex";document.body.style.overflow="hidden";$("closeBtn").focus();
+ activeRecord=r;lastFocused=document.activeElement;
+ $("modalTitle").textContent=`${r.Reference} — ${r.Event}`;
+ $("sourceLink").href=src;
+ $("sourceEmpty").textContent=`${r.Reference} on sajeevavahini.com`;
+ $("overlay").style.display="flex";
+ document.body.style.overflow="hidden";
+ $("sourceLink").focus();
 }
 function closeSource(){ $("sourceFrame").src="";$("overlay").style.display="none";document.body.style.overflow="";if(lastFocused)lastFocused.focus();activeRecord=null }
 function setMode(next){mode=next;$("tileBtn").classList.toggle("active",mode==="tiles");$("listBtn").classList.toggle("active",mode==="list");$("tileBtn").setAttribute("aria-pressed",mode==="tiles");$("listBtn").setAttribute("aria-pressed",mode==="list");render()}
