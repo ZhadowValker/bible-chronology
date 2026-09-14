@@ -51,39 +51,55 @@ function render(){
 function openSource(r){
  if(!r)return;
  activeRecord=r;
- lastFocused=document.activeElement;
- $("modalTitle").textContent=`${r.Reference} — ${r.Event}`;
  
  // Build list of Bible sources for this reference
  const ref = r.Reference.trim();
  const book = ref.split(' ')[0];
- const sourceList = [
+ const sources = [
    { name: 'Telugu (BSI)', url: `https://www.sajeevavahini.com/bible/telugu-bible-bsi/${book.toLowerCase()}/` },
-   { name: 'KJV (BibleHub)', url: `https://biblehub.com/${book.lower()}/` },
+   { name: 'KJV (BibleHub)', url: `https://biblehub.com/${book.toLowerCase()}/` },
    { name: 'NIV (Bible.com)', url: `https://www.bible.com/search?q=${encodeURIComponent(ref)}` },
    { name: 'ESV (BibleHub)', url: `https://biblehub.com/esv/${book.toLowerCase()}/` }
  ];
  
- const container = $("sourceEmpty");
- container.innerHTML = '<div class="sources-list"><p style="margin-top:0; color:#666; font-size:0.9em;">Choose a Bible source:</p></div>';
- const list = container.querySelector('.sources-list');
+ // Create popup content
+ const html = `<!DOCTYPE html>
+<html>
+<head>
+  <title>${r.Reference} — ${r.Event}</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
+    .container { max-width: 500px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; }
+    .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; }
+    .header h1 { font-size: 18px; margin-bottom: 4px; }
+    .header p { font-size: 13px; opacity: 0.9; }
+    .sources { padding: 20px; }
+    .sources p { font-size: 13px; color: #666; margin-bottom: 12px; }
+    .source-btn { display: block; width: 100%; padding: 14px 16px; margin: 10px 0; background: #f0f0f0; border: 1px solid #ddd; border-radius: 6px; color: #333; text-decoration: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; text-align: left; }
+    .source-btn:hover { background: #667eea; color: white; border-color: #667eea; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
+    .source-btn:active { transform: translateY(0); }
+    .footer { padding: 12px 20px; background: #fafafa; border-top: 1px solid #eee; font-size: 12px; color: #999; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>${r.Reference}</h1>
+      <p>${r.Event}</p>
+    </div>
+    <div class="sources">
+      <p>Choose a Bible source:</p>` + sources.map(s => `<a href="${s.url}" target="_blank" class="source-btn">${s.name}</a>`).join('') + `
+    </div>
+    <div class="footer">Open in new tab to read</div>
+  </div>
+</body>
+</html>`;
  
- sourceList.forEach((src, i) => {
-   const btn = document.createElement('a');
-   btn.href = src.url;
-   btn.target = '_blank';
-   btn.rel = 'noopener';
-   btn.className = 'source-option';
-   btn.textContent = src.name;
-   btn.style.cssText = 'display:block; padding:12px 16px; margin:8px 0; background:#f0f0f0; border-radius:4px; color:#333; text-decoration:none; border:1px solid #ddd; transition:all 0.2s; cursor:pointer;';
-   btn.onmouseover = () => btn.style.background = '#e0e0e0';
-   btn.onmouseout = () => btn.style.background = '#f0f0f0';
-   list.appendChild(btn);
- });
- 
- $("overlay").style.display="flex";
- document.body.style.overflow="hidden";
- container.focus();
+ // Open popup window
+ const popup = window.open('', 'BibleSource', 'width=550,height=600,resizable=yes,scrollbars=yes');
+ popup.document.write(html);
+ popup.document.close();
 }
 function closeSource(){ $("sourceFrame").src="";$("overlay").style.display="none";document.body.style.overflow="";if(lastFocused)lastFocused.focus();activeRecord=null }
 function setMode(next){mode=next;$("tileBtn").classList.toggle("active",mode==="tiles");$("listBtn").classList.toggle("active",mode==="list");$("tileBtn").setAttribute("aria-pressed",mode==="tiles");$("listBtn").setAttribute("aria-pressed",mode==="list");render()}
