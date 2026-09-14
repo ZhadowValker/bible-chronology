@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#15130f">
+<meta name="description" content="Explore 556 Bible events in chronological order with KJV references and linked source chapters.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231c1915'/%3E%3Cpath d='M32 12l4.4 15.6L52 32l-15.6 4.4L32 52l-4.4-15.6L12 32l15.6-4.4L32 12z' fill='%23f6f2ea'/%3E%3C/svg%3E">
+<title>Chronicles — Bible chronology</title>
+<link rel="stylesheet" href="styles-1.css">
+<link rel="stylesheet" href="styles-2.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-row">
+      <a class="brand" href="#" aria-label="Chronicles home">
+        <span class="brand-mark">✦</span>
+        <span><span class="brand-kicker">A study companion</span><span class="brand-name">Chronicles</span></span>
+      </a>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">☾</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <span class="eyebrow">Bible chronology · KJV</span>
+    <h1>The story, in order.</h1>
+    <p class="hero-copy">Move through the major events of Scripture from Creation to the eternal state. Search, filter, and open each reference as you study.</p>
+    <div class="stats" aria-label="Collection statistics">
+      <div class="stat"><strong id="totalStat">556</strong><span>events</span></div>
+      <div class="stat"><strong id="periodStat">28</strong><span>periods</span></div>
+      <div class="stat"><strong id="bookStat">42</strong><span>books</span></div>
+    </div>
+  </section>
+  <section class="workspace" aria-label="Chronology explorer">
+    <div class="toolbar">
+      <div class="search-wrap"><span class="search-icon" aria-hidden="true">⌕</span><input class="search" id="search" type="search" autocomplete="off" placeholder="Search events, books, references…" aria-label="Search the chronology"></div>
+      <select class="select" id="period" aria-label="Filter by period"><option value="">All periods</option></select>
+      <select class="select" id="sort" aria-label="Sort events">
+        <option value="chron">Chronological order</option><option value="part">Group by part</option><option value="title">Group by title</option><option value="book">Group by book</option>
+      </select>
+      <div class="view-toggle" role="group" aria-label="Choose a view"><button id="tileBtn" class="view-btn active" type="button" aria-pressed="true">Cards</button><button id="listBtn" class="view-btn" type="button" aria-pressed="false">List</button></div>
+    </div>
+    <div class="filter-row" id="filterRow" aria-label="Popular periods"><span class="filter-label">Jump to</span></div>
+    <div class="results-head"><div><h2 class="results-title">The timeline</h2><p class="results-meta" id="count">Loading chronology…</p></div><div class="results-note">Original numbers preserve the complete chronology</div></div>
+    <section id="grid" class="grid" aria-live="polite"></section>
+    <section id="list" class="list" aria-live="polite"></section>
+    <div id="empty" class="empty"><strong>No events found</strong>Try a different search term or clear the active period filter.</div>
+  </section>
+</main>
+<footer class="footer"><div class="footer-line"></div><span>Built for quiet reading and careful study · </span><a href="https://github.com/" target="_blank" rel="noopener">Static-site ready</a></footer>
+<div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modalhead"><div><span class="modal-kicker">Reading source</span><div class="modaltitle" id="modalTitle">Source</div></div><div class="modal-actions"><a class="source-link" id="sourceLink" href="#" target="_blank" rel="noopener">Open in new tab ↗</a><button class="close" id="closeBtn" type="button" aria-label="Close source reader">×</button></div></div>
+    <div class="source-tabs" id="sourceTabs" aria-label="Source chapters"></div>
+    <iframe id="sourceFrame" title="Bible source"></iframe><div class="source-empty" id="sourceEmpty">No source link is available for this event.</div>
+  </div>
+</div>
+<script src="data-1.js"></script>
+<script src="data-2.js"></script>
+<script src="data-3.js"></script>
+<script src="data-4.js"></script>
+<script src="data-5.js"></script>
+<script src="data-6.js"></script>
+<script src="data-7.js"></script>
+<script src="data-8.js"></script>
+<script src="data-9.js"></script>
+<script src="data-10.js"></script>
+<script src="data-11.js"></script>
+<script src="data-12.js"></script>
+<script src="data-13.js"></script>
+<script src="data-14.js"></script>
+<script src="data-15.js"></script>
+<script src="data-16.js"></script>
+<script src="data-17.js"></script>
+<script src="data-18.js"></script>
+<script src="data-19.js"></script>
+<script src="data-20.js"></script>
+<script src="data-21.js"></script>
+<script src="data-22.js"></script>
+<script src="data-23.js"></script>
+<script src="data-24.js"></script>
+<script src="data-25.js"></script>
+<script src="data-26.js"></script>
+<script src="data-27.js"></script>
+<script src="data-28.js"></script>
+<script src="data-29.js"></script>
+<script src="data-30.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+window.CHRONICLES_DATA.push(...[{"#":"556","Period":"Eternal State","Part":"25","Part-Title":"Revelation","Event":"Final blessing","Reference":"Revelation 22:21","Source":"https://www.sajeevavahini.com/bible/telugu-bible-bsi/revelation/22"}]);
