@@ -9,6 +9,7 @@
 <title>Chronicles — Bible chronology</title>
 <link rel="stylesheet" href="styles-1.css">
 <link rel="stylesheet" href="styles-2.css">
+<link rel="stylesheet" href="styles-3.css">
 </head>
 <body>
 <header class="site-header">
@@ -19,6 +20,7 @@
         <span><span class="brand-kicker">A study companion</span><span class="brand-name">Chronicles</span></span>
       </a>
       <div class="header-actions">
+        <button class="icon-btn chart-btn" id="chartBtn" type="button" title="Open the Adams' chart pane">Chart</button>
         <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">☾</button>
       </div>
     </div>
@@ -45,6 +47,7 @@
       <div class="view-toggle" role="group" aria-label="Choose a view"><button id="tileBtn" class="view-btn active" type="button" aria-pressed="true">Cards</button><button id="listBtn" class="view-btn" type="button" aria-pressed="false">List</button></div>
     </div>
     <div class="filter-row" id="filterRow" aria-label="Popular periods"><span class="filter-label">Jump to</span></div>
+    <div class="adams-bar" id="adamsBar" hidden></div>
     <div class="results-head"><div><h2 class="results-title">The timeline</h2><p class="results-meta" id="count">Loading chronology…</p></div><div class="results-note">Original numbers preserve the complete chronology</div></div>
     <section id="grid" class="grid" aria-live="polite"></section>
     <section id="list" class="list" aria-live="polite"></section>
@@ -57,6 +60,23 @@
     <div class="modalhead"><div><span class="modal-kicker">Reading source</span><div class="modaltitle" id="modalTitle">Source</div></div><div class="modal-actions"><a class="source-link" id="sourceLink" href="#" target="_blank" rel="noopener">Open in new tab ↗</a><button class="close" id="closeBtn" type="button" aria-label="Close source reader">×</button></div></div>
     <div class="source-tabs" id="sourceTabs" aria-label="Source chapters"></div>
     <iframe id="sourceFrame" title="Bible source"></iframe><div class="source-empty" id="sourceEmpty">No source link is available for this event.</div>
+  </div>
+</div>
+<div id="chartModal" class="chart-modal" role="dialog" aria-modal="true" aria-label="Adams' chart pane">
+  <div class="chart-box">
+    <div class="chart-head">
+      <span class="chart-title">Adams' Synchronological Chart (1881)</span>
+      <div class="chart-panels" id="chartPanels" aria-label="Jump to panel"></div>
+      <div class="chart-tools"><button type="button" id="zoomOut" aria-label="Zoom out">−</button><button type="button" id="zoomIn" aria-label="Zoom in">+</button><button type="button" id="zoomFit" aria-label="Fit to window">Fit</button><button type="button" id="chartClose" aria-label="Close chart">×</button></div>
+    </div>
+    <div class="chart-view" id="chartView">
+      <img id="chartImg" alt="Adams' Synchronological Chart of History, 1881" draggable="false">
+      <div class="chart-missing" id="chartMissing" hidden>
+        <strong>The chart image isn't added to this site yet.</strong>
+        <span>Place a scan at <code>chart/adams.jpg</code> (see <code>chart/README.md</code>), or view the chart at <a href="https://www.adamschart.org/" target="_blank" rel="noopener">adamschart.org ↗</a>.</span>
+      </div>
+    </div>
+    <div class="chart-credit">Scan: David Rumsey Map Collection, David Rumsey Map Center, Stanford Libraries (CC BY-NC-SA 3.0, non-commercial use). Panel pages: <a href="https://www.adamschart.org/panels/" target="_blank" rel="noopener">adamschart.org</a>.</div>
   </div>
 </div>
 <script src="data-1.js"></script>
@@ -89,6 +109,7 @@
 <script src="data-28.js"></script>
 <script src="data-29.js"></script>
 <script src="data-30.js"></script>
+<script src="adams.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

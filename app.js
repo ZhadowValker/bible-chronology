@@ -45,6 +45,7 @@ function render(){
  $("grid").innerHTML=a.map(card).join("");$("list").innerHTML=a.map(row).join("");
  $("grid").style.display=mode==="tiles"?"grid":"none";$("list").style.display=mode==="list"?"flex":"none";$("empty").style.display=a.length?"none":"block";
  updateChips();
+ if(window.updateAdamsBar)updateAdamsBar(selected);
  document.querySelectorAll(".card,.row").forEach(el=>{el.addEventListener("click",()=>openSource(DATA.find(x=>x["#"]===el.dataset.id)));el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openSource(DATA.find(x=>x["#"]===el.dataset.id))}})});
 }
 
